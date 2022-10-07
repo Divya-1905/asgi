@@ -1,0 +1,76 @@
+<style>
+  .box button{
+    margin-top: 6%;
+    margin-left: 13%;
+    padding-left: 1%;
+    border-radius: 11%;
+  }
+  .box li{
+    padding-left: 41%;
+    margin-top: -2%;
+    margin-bottom: 4%;
+  }
+
+  .box{
+    height: 38vh;
+    border: 1px solid;
+    border-radius: 37px;
+    width: 38%;
+    padding-right: 6%;
+    padding-left: -9%;
+    padding: 3%;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f7f7f9;
+    margin-left: 8%;
+    margin-top: 8%;
+  }
+</style>
+{% extends "base.html" %}
+    {% block content%}
+    <div class ="box">
+        <li>TODO</li>
+        {%csrf_token%}
+        {{form.as_p}}
+        <button onclick=get()>submit</button>
+        <button><a href ='http://127.0.0.1:9000/login'>login</a></button>
+        
+    </div>
+    <div class = "error"></div>
+    {% comment %} <a href={%url %} {% endcomment %}
+<script>
+var email,phone,password,confirm_password;
+var host = window.location.protocol + "//" + window.location.host;
+let csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value
+function get(){
+email=document.getElementById("id_email").value
+phone=document.getElementById("id_phone").value
+password=document.getElementById("id_password").value
+confirm_password= document.getElementById("id_confrim_password").value
+if(password!=confirm_password){
+ document.querySelector(".error").innerHTML='<P>PASSWORDDOES NOT MATCH</P>'
+ return
+}
+console.log(email)
+console.log(phone,password,confirm_password)
+//var validRegex = $@gmail.com;
+fetch('http://127.0.0.1:9000/api/signup', {
+    method: 'POST',
+    body: JSON.stringify({'email':email,'phone':phone,'password':password}),
+    headers: new Headers({
+      'X-CSRFToken':csrf_token,
+      'Content-Type': 'application/json'
+    }),
+
+  }).then(res => {
+
+    return res.json()
+
+  }).then(data => {
+    console.log(data)
+    
+  })
+  window.location.href = `${host}/login`
+}
+</script>
+   
+{%endblock%}

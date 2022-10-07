@@ -1,0 +1,69 @@
+<style>
+  .update{
+    height: 71vh;
+    border: 1px solid;
+    border-radius: 37px;
+    width: 39%;
+    padding-right: 6%;
+    padding-left: -9%;
+    padding: 3%;
+    font-family: 'Montserrat', sans-serif;
+    background-color: cadetblue;
+    margin-left: 8%;
+    
+
+  }
+</style>
+{% extends 'base.html'%}
+{%block content%}
+  <div class='update'>
+    <h1>UPDATE</h1>
+<form method='POST'>
+ 
+      {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" id ='submit' value="OK">
+</form>
+</div>
+<script>
+    var  accountuser,title,details, complete,takenHours,plannedhours, created,notification:
+    let csrf_token = document.querySelector('[name=csrfmiddlewaretoken]')
+    function get(){
+       accountuser=document.getElementById("id_user").value
+       tittle=document.getElementById("id_title").value
+       details=document.getElementById("id_details").value
+       complete=document.getElementById("id_complete").value
+       takenHours=document.getElementById("id_takenHours").value
+       plannedhours=document.getElementById("id_plannedhours").value
+       created=document.getElementById("id_created").value
+       notification=document.getElementById("id_notification").value
+    }
+    console.log(accountuser)
+    console.log(title)
+    console.log(details)
+    console.log(complete)
+    console.log(takenHours)
+    console.log(plannedhours)
+    console.log(created)
+    console.log(notification)
+    fetch('http://127.0.0.1:9000/updatetodo',{
+       method:'POST',
+       body:JSON.stringify({'accountuser':user,'title':title,'details':details:'complete':complete:'takenHours':takenHours:'plannedhours':plannedhours
+   'created':created:'notification':notification}),
+       headers:new Headers({
+         'X-CSRFToken':csrf_token,
+         'Content-Type':'application/json'
+   
+   
+       }),
+     }).then(res => {
+   
+       return res.json()
+   
+     }).then(data => {
+       console.log(data)
+       
+     })
+     
+   </script>
+  {%endblock%}

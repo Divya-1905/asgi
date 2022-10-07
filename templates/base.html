@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+<style>
+    .box{
+        height: 38vh;
+        border: 1px solid;
+        border-radius: 37px;
+        width: 38%;
+        padding-right: 6%;
+        padding-left: -9%;
+        padding: 3%;
+        font-family: 'Montserrat', sans-serif;
+        background-color: indianred;
+        margin-left: 8%;
+        
+    
+      }
+      .box h1{
+        text-align: center;
+      }
+      .box form{
+          padding-left: 3%;
+      }
+      li{
+        list-style-type:none;
+        margin-top: 1%;
+      }
+      ul{
+        height: 7%;
+        display: flex;
+        justify-content: space-around;
+        background-color: seagreen;
+      }
+</style>
+</head>
+
+<body>
+  <ul>
+    <li><a href ='http://127.0.0.1:9000/login'>login</a></li>
+    <li><a href="#" onclick= logout()>logout</a></li>
+    <li><a href = 'http://127.0.0.1:9000/todocreate'>todo</a></li>
+    <li><a href = 'http://127.0.0.1:9000/signup'>signup</a></li>
+  </ul>
+     {% block content  %}
+
+
+     
+{% endblock   %}
+    <script>
+      function logout(){
+let token = localStorage.getItem('token')
+fetch('http://127.0.0.1:9000/api/logout',{
+  method:'GET',
+  
+  headers:new Headers({
+    
+    'Content-Type':'application/json',
+    'Authorization':'token' + ' '+token,
+  }),
+}).then(res => {
+
+  return res.json()
+
+}).then(data => {
+  localStorage.clear()
+})
+window.location.href = `${host}/logout`
+}
+    </script>
+
+</body>
+
+</html>

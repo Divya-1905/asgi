@@ -1,0 +1,168 @@
+<style>
+.signup {
+  height: 60vh;
+    border: 1px solid;
+    border-radius: 37px;
+    width: 41%;
+    padding-right: 6%;
+    padding-left: -9%;
+    padding: 3%;
+    font-family: 'Montserrat', sans-serif;
+    background-color: teal;
+    margin-left: 8%;
+    margin-top: 8%;
+}
+.todolist-div{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    margin-top: 4%;
+    padding: 4%;
+    height: 32%;
+}
+.todolist{
+  background-color: lightblue;
+  height: 87%;
+  width: 62%;
+  padding-left: 12%;
+  padding-bottom: 5%;
+  border-radius: 11%;
+}
+.todolist a{
+  padding-left: 16%;
+}
+
+
+.signup p{
+  margin-top: 3%;
+}
+.signup a{
+  margin-left: 38%;
+    margin-top: -3%;
+}
+.table td {
+  padding-left:83%;
+}
+button{
+  margin-left: 33%;
+}
+
+</style>
+{% extends 'base.html'%}
+{%block content%}
+<div  class = 'signup'>
+     <a>CREATETODO</a>
+    {%csrf_token%}
+    {{form.as_p}}
+    <button id='submit'>submit</button>
+</div>
+<div class = 'todolist-div'></div>
+  
+<script>
+
+ var  accountuser,title,details, complete,takenHours,plannedhours, created,notification;
+ let container = document.querySelector('.todolist-div')
+ let csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value
+ let editbutton=false;
+
+ var token = localStorage.getItem('token')
+ fetch('http://127.0.0.1:9000/api/indexlogin',{
+    method:'GET',
+    headers:new Headers({
+      'Content-Type':'application/json',
+      'Authorization':'token' + ' '+token,
+    }),
+  }).then(res => {
+  
+    return res.json()
+  
+  }).then(data => {
+    console.log(data)
+    var content = ''
+    data.forEach((d,index)=>{
+        console.log(d)
+    
+      
+     content+=`<div class = 'todolist' id=${d.id}>
+        <p >title  :<span  class ='title'>${d.tittle}</span> </p>
+        <p>details :<span class ='Details'> ${d.details} </span></p>
+        <p>plannedhours :<span class ='plannedhours'> ${d.plannedhours} </span></p>
+        <p>takenHours:<span class='takenHours'>${d.takenHours}</span></p>
+        <p>complete:<span class='complete'>${d.complete}</span><p>
+        <p>notification:<span class='notification'>${d.notification}</span></p>
+        <a href = "#" id='edit'>edit</a>
+      
+        <a href = >delete</a></div>
+      
+        `   
+    })
+    container.innerHTML= content 
+    })
+    container.addEventListener('click', (e) => {
+     let csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value
+      var data =e.target.parentElement
+      console.log(data)
+      editbutton = e.target.id == 'edit';
+      var title = data.querySelector('.title').textContent;
+      var details = data.querySelector('.details').textContent;
+      var takenHours = data.querySelector('.takenHours').textContent;
+      var plannedhours = data.querySelector('.plannedhours').textContent;
+      var complete = data.querySelector('.complete').textContent;
+      var notification = data.querySelector('.notification').textContent;
+      var url = 'http://127.0.0.1:9000/api/updatetodo/'
+      document.getElementById("id_tittle").value=title
+      document.getElementById("id_details").value=details
+      document.getElementById("id_takenHours").value=takenHours
+      document.getElementById("id_plannedhours").value=parseInt(plannedhours)
+      document.getElementById("id_notification").value=notification
+      document.getElementById("id_complete").checked =   JSON.parse(complete);
+      console.log(plannedhours)
+      console.log(complete)
+      if(editbutton){
+      document.getElementById('submit').addEventListener('click', (e) => {
+        var title1 = document.getElementById("id_tittle").value
+        var details1 = document.getElementById("id_details").value
+        var takenHours1 = document.getElementById("id_takenHours").value
+        var plannedhours1 = document.getElementById("id_plannedhours").value
+        var complete1 = document.getElementById("id_complete").value
+        var notification1 = document.getElementById("id_notification").value
+      fetch(`${url}${data.id}`,{
+        method:'PUT',
+        headers:{
+            'X-CSRFToken':csrf_token,
+            'Content-Type':'application/json',
+    },
+        body:JSON.stringify({'accountuser':localStorage.getItem('id'),'details' :details1,'tittle' :title1,'takenHours' :takenHours1,
+           'plannedhours' :plannedhours1,'notification' :notification1,'complete' :complete1}),
+        }).then(res => {
+        console.log(res)
+      })    
+   })
+  }
+})
+
+ document.getElementById('submit').addEventListener('click', (e) => {
+  if(!editbutton){
+      var title = document.getElementById("id_tittle").value
+      var details = document.getElementById("id_details").value
+      var takenHours = document.getElementById("id_takenHours").value
+      var plannedhours = document.getElementById("id_plannedhours").value
+      var complete = document.getElementById("id_complete").checked
+      console.log(complete)
+      var notification = document.getElementById("id_notification").value
+    fetch('http://127.0.0.1:9000/api/indexlogin/',{
+      method:'POST',
+      headers:{
+          'X-CSRFToken':csrf_token,
+          'Content-Type':'application/json',
+  },
+      body:JSON.stringify({'accountuser':localStorage.getItem('id'),'details' :details,'tittle' :title,'takenHours' :takenHours,
+         'plannedhours' :plannedhours,'notification' :notification,'complete' :complete}),
+      }).then(res => {
+      console.log(res)
+    })    
+  }
+ })
+
+   
+</script>
+{%endblock%}
