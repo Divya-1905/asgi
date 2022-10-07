@@ -22,4 +22,3 @@ urlpatterns = [
     path('',include('api.frontendurl'))
     
 ]
-p
