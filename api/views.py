@@ -19,7 +19,7 @@ from rest_framework.generics import CreateAPIView,UpdateAPIView,RetrieveUpdateAP
 from api.models import user,Todo
 
 
-class signup(CreateAPIView):
+class Signup(CreateAPIView):
     serializer_class =  signupserialiser
     queryset = user.objects.all()
     permission_classes = [AllowAny]
@@ -56,11 +56,11 @@ class loginview(APIView):
                 
             return Response({'status':'login','data':data},status=status.HTTP_200_OK)
         
-class logouttodo(APIView):
+class Logout(APIView):
     def get(self,request):
         logout(request)
         return Response({'status':'logout'})    
-class updatename(RetrieveUpdateDestroyAPIView):  
+class EditUser(RetrieveUpdateDestroyAPIView):  
     queryset = user.objects.all()
     serializer_class =  userserializers
     permission_classes =[AllowAny]
@@ -74,12 +74,14 @@ class updatename(RetrieveUpdateDestroyAPIView):
         return Response({'error':serializer.errors},status=status.HTTP_206_PARTIAL_CONTENT)
 
 
-class  index(CreateAPIView)  : 
+class  CreateTodo(CreateAPIView)  : 
     serializer_class = todoserializer
     queryset = Todo.objects.all()
     permission_classes=[AllowAny]
     def  create(self,request):
-        serializer = todoserializer(data=request.data)
+        serializer = todoserializer(data=request.data,context={
+        'request': request
+    })
         if serializer.is_valid():
             serializer.save()
             return Response({"status:created"},status=status.HTTP_200_OK)
@@ -87,17 +89,19 @@ class  index(CreateAPIView)  :
     def get(self,request):
        User = self.request.user
        print(User)
-       queryset = Todo.objects.filter(accountuser=User)
+       queryset = Todo.objects.prefetch_related('accountuser').filter(accountuser=request.user)
        print(queryset)
        serializer = todoserializer(queryset,many =True)
        return Response(serializer.data)
-class update1(RetrieveUpdateDestroyAPIView):  
+class UpdateTodo(RetrieveUpdateDestroyAPIView):  
     queryset = Todo.objects.all()
     serializer_class =   todoserializer
     permission_classes =[AllowAny]
     def update(self,request,pk):
         instance= Todo.objects.get(id=pk)
-        serializer =  todoserializer(instance,data=request.data)
+        serializer =  todoserializer(instance,data=request.data,context={
+        'request': request
+    })
         if serializer.is_valid():
             serializer.save(user=request.user)
             return Response({"status":"update"},status=status.HTTP_200_OK)

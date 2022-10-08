@@ -1,6 +1,5 @@
 from dataclasses import field, fields
 import email
-from pyexpat import model
 from rest_framework import serializers
 from api.models import user,Todo
 
@@ -22,11 +21,8 @@ class signupserialiser(serializers.ModelSerializer)  :
           user1.save()
           return user1
 class todoserializer(serializers.ModelSerializer):
+    accountuser = serializers.HiddenField(default=serializers.CurrentUserDefault())
     class Meta:
         model = Todo
-        fields = '__all__'
-    
-
-
-
+        fields = ['id','accountuser','tittle','details','notification','complete','takenHours','plannedhours']
           
