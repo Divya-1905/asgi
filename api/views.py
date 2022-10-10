@@ -89,7 +89,7 @@ class  CreateTodo(CreateAPIView)  :
     def get(self,request):
        User = self.request.user
        print(User)
-       queryset = Todo.objects.filter(user=User)
+       queryset = Todo.objects.filter(accountuser=User)
        print(queryset)
        serializer = todoserializer(queryset,many =True)
        return Response(serializer.data)
