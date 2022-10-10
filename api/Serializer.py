@@ -21,8 +21,7 @@ class signupserialiser(serializers.ModelSerializer)  :
           user1.save()
           return user1
 class todoserializer(serializers.ModelSerializer):
-    accountuser = serializers.HiddenField(default=serializers.CurrentUserDefault())
     class Meta:
         model = Todo
-        fields = ['id','accountuser','tittle','details','notification','complete','takenHours','plannedhours']
+        fields = '__all__'
           

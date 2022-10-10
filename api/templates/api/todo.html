@@ -90,7 +90,7 @@ button{
         <p>complete:<span class='complete'>${d.complete}</span><p>
         <p>notification:<span class='notification'>${d.notification}</span></p>
         <a href = "#" id='edit'>edit</a>
-        <a href ='#' onclick='delete(${d.id})' >delete</a></div>
+        <a href ='#' onclick=deletetodo(${d.id})>delete</a></div>
       
         `   
     })
@@ -161,7 +161,7 @@ button{
     })    
   }
  })
- function delete(id){
+ function deletetodo(id){
  
  console.log(id)
  }
