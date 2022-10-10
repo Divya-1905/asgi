@@ -48,7 +48,7 @@ class loginview(APIView):
             return Response({"status":"dosenotexist"},status=status.HTTP_201_CREATED)
         if User:
             login(request,User)
-            token,created = Token.objects.get_or_create(accountuser=User)
+            token,created = Token.objects.get_or_create(user=User)
             id = User.id
             data ={
                 "token": token.key,
@@ -87,7 +87,7 @@ class  CreateTodo(CreateAPIView)  :
     def get(self,request):
        User = self.request.user
        print(User)
-       queryset = Todo.objects.filter(user=User)
+       queryset = Todo.objects.filter(accountuser=User)
        print(queryset)
        serializer = todoserializer(queryset,many =True)
        return Response(serializer.data)
