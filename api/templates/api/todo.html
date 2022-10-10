@@ -108,7 +108,7 @@ button{
       var plannedhours = data.querySelector('.plannedhours').textContent;
       var complete = data.querySelector('.complete').textContent;
       var notification = data.querySelector('.notification').textContent;
-      var url = 'http://127.0.0.1:9000/api/updatetodo/'
+      var url = 'https://apiven.herokuapp.com/api/updatetodo/'
       document.getElementById("id_tittle").value=title
       document.getElementById("id_details").value=details
       document.getElementById("id_takenHours").value=takenHours
@@ -149,7 +149,7 @@ button{
       var complete = document.getElementById("id_complete").checked
       console.log(complete)
       var notification = document.getElementById("id_notification").value
-    fetch('http://127.0.0.1:9000/api/createtodo/',{
+    fetch('http://apiven.herokuapp.com/api/createtodo/',{
       method:'POST',
       headers:{
           'X-CSRFToken':csrf_token,
