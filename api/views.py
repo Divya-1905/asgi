@@ -48,7 +48,7 @@ class loginview(APIView):
             return Response({"status":"dosenotexist"},status=status.HTTP_201_CREATED)
         if User:
             login(request,User)
-            token,created = Token.objects.get_or_create(user=User)
+            token,created = Token.objects.get_or_create(accountuser=User)
             id = User.id
             data ={
                 "token": token.key,
