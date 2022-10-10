@@ -29,7 +29,6 @@
      {% csrf_token %}
      {{form.as_p}}
      <button onclick=get()>submit</button>
-     <button><a href ='http://127.0.0.1:9000/todocreate'>todocreate</a></button>
   </div>
   <script>
     var email,password
@@ -47,10 +46,8 @@
       headers:new Headers({
         'X-CSRFToken':csrf_token,
         'Content-Type':'application/json'
-
       }),
     }).then(res => {
-
       return res.json()
   
     }).then(data => {
