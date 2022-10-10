@@ -79,9 +79,7 @@ class  CreateTodo(CreateAPIView)  :
     queryset = Todo.objects.all()
     permission_classes=[AllowAny]
     def  create(self,request):
-        serializer = todoserializer(data=request.data,context={
-        'request': request
-    })
+        serializer = todoserializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response({"status:created"},status=status.HTTP_200_OK)
@@ -99,9 +97,7 @@ class UpdateTodo(RetrieveUpdateDestroyAPIView):
     permission_classes =[AllowAny]
     def update(self,request,pk):
         instance= Todo.objects.get(id=pk)
-        serializer =  todoserializer(instance,data=request.data,context={
-        'request': request
-    })
+        serializer =  todoserializer(instance,data=request.data)
         if serializer.is_valid():
             serializer.save(user=request.user)
             return Response({"status":"update"},status=status.HTTP_200_OK)
