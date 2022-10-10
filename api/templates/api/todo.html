@@ -149,7 +149,7 @@ button{
       var complete = document.getElementById("id_complete").checked
       console.log(complete)
       var notification = document.getElementById("id_notification").value
-    fetch('http://apiven.herokuapp.com/api/createtodo/',{
+    fetch('https://apiven.herokuapp.com/api/createtodo/',{
       method:'POST',
       headers:{
           'X-CSRFToken':csrf_token,
