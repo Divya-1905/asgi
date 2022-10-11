@@ -85,7 +85,7 @@ class  CreateTodo(CreateAPIView)  :
             return Response({"status:created"},status=status.HTTP_200_OK)
         return Response({'status':serializer.errors},status=status.HTTP_204_NO_CONTENT)
     def get(self,request):
-       User = request.user
+       User = self.request.user
        print(User)
        queryset = Todo.objects.filter(accountuser=User)
        print(queryset)

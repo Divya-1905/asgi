@@ -8,7 +8,7 @@
     padding-left: -9%;
     padding: 3%;
     font-family: 'Montserrat', sans-serif;
-    background-color: teal;
+    background-color:#c6538c;
     margin-left: 8%;
     margin-top: 8%;
 }
@@ -49,7 +49,6 @@ button{
 </style>
 {% extends 'base.html'%}
 {%block content%}
-<button onclick =logout()><i class="fa fa-sign-out" aria-hidden="true"></i></button>
 <div  class = 'signup'>
      <a>CREATETODO</a>
     {%csrf_token%}
@@ -64,10 +63,9 @@ button{
  let container = document.querySelector('.todolist-div')
  let csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value
  let editbutton=false;
- var host = window.location.protocol + "//" + window.location.host;
 
  var token = localStorage.getItem('token')
- fetch('https://apiven.herokuapp.com/api/createtodo/',{
+ fetch(' http://127.0.0.1:9000/api/createtodo/',{
     method:'GET',
     headers:new Headers({
       'Content-Type':'application/json',
@@ -92,8 +90,7 @@ button{
         <p>complete:<span class='complete'>${d.complete}</span><p>
         <p>notification:<span class='notification'>${d.notification}</span></p>
         <a href = "#" id='edit'>edit</a>
-        <a href ='#' onclick=deletetodo(${d.id})>delete</a></div>
-      
+        <p><a href ='#' onclick=deletetodo(${d.id})>delete</a></p></div>
         `   
     })
     container.innerHTML= content 
@@ -109,7 +106,7 @@ button{
       var plannedhours = data.querySelector('.plannedhours').textContent;
       var complete = data.querySelector('.complete').textContent;
       var notification = data.querySelector('.notification').textContent;
-      var url = 'https://apiven.herokuapp.com/api/updatetodo/'
+      var url = ' http://127.0.0.1:9000/api/updatetodo/'
       document.getElementById("id_tittle").value=title
       document.getElementById("id_details").value=details
       document.getElementById("id_takenHours").value=takenHours
@@ -136,6 +133,7 @@ button{
            'plannedhours' :plannedhours1,'notification' :notification1,'complete' :complete1}),
         }).then(res => {
         console.log(res)
+        location.reload()
       })    
    })
   }
@@ -150,7 +148,7 @@ button{
       var complete = document.getElementById("id_complete").checked
       console.log(complete)
       var notification = document.getElementById("id_notification").value
-    fetch('https://apiven.herokuapp.com/api/createtodo/',{
+    fetch(' http://127.0.0.1:9000/api/createtodo/',{
       method:'POST',
       headers:{
           'X-CSRFToken':csrf_token,
@@ -160,15 +158,22 @@ button{
          'plannedhours' :plannedhours,'notification' :notification,'complete' :complete}),
       }).then(res => {
       console.log(res)
-      window.location.href=`${host}/todocreate`
+      location.reload()
     })    
   }
  })
  function deletetodo(id){
- 
+ var url = 'http://127.0.0.1:9000/api/updatetodo/';
+   fetch(`${url}${id}`,{
+    method:'DELETE',
+    headers:{
+        'X-CSRFToken':csrf_token,
+        'Content-Type':'application/json',
+        'Authorization':'token' + ' '+token,
+}
+ }).then(res => {console.log(res.json())})
+ location.reload()
  console.log(id)
- }
-
-   
+ }   
 </script>
 {%endblock%}
