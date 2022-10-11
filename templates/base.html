@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<<<<<<< HEAD
+=======
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+>>>>>>> 51283c5b7ed7bb8cfcf1b0ccfb18f3e4bb7e52ad
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo</title>
 <style>
@@ -66,20 +70,11 @@
 </head>
 
 <body>
-  <ul>
-    <li><a href ='http://127.0.0.1:9000/login'>login</a></li>
-    <li><a href='http://127.0.0.1:9000/login' onclick= logout()>logout</a></li>
-    <li><a href = 'http://127.0.0.1:9000/todocreate'>todo</a></li>
-    <li><a href = 'http://127.0.0.1:9000/signup'>signup</a></li>
-  </ul>
      {% block content  %}
-
-
-     
 {% endblock   %}
-
-<script>
-    function logout(){
+    <script>
+      var host = window.location.protocol + "//" + window.location.host;
+      function logout(){
 let token = localStorage.getItem('token')
 fetch('http://127.0.0.1:9000/api/logout',{
 method:'GET',
@@ -96,7 +91,7 @@ return res.json()
 }).then(data => {
 localStorage.clear()
 })
-window.location.href = `${host}/login`
+window.location.href = `${host}`
 }
   </script>
 </body>  

@@ -5,4 +5,5 @@ urlpatterns=[
     path('login',login),
     path('todocreate',createtodo),
     path('updatetodo',updatetodo),
+     path('',index)
 ]
