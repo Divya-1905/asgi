@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Document</title>
@@ -46,18 +46,11 @@
 </head>
 
 <body>
-  <ul>
-    <li><a href ='http://127.0.0.1:9000/login'>login</a></li>
-    <li><a href="#" onclick= logout()>logout</a></li>
-    
-   
-  </ul>
+
      {% block content  %}
-
-
-     
 {% endblock   %}
     <script>
+      var host = window.location.protocol + "//" + window.location.host;
       function logout(){
 let token = localStorage.getItem('token')
 fetch('http://127.0.0.1:9000/api/logout',{
@@ -75,7 +68,7 @@ fetch('http://127.0.0.1:9000/api/logout',{
 }).then(data => {
   localStorage.clear()
 })
-window.location.href = `${host}/logout`
+window.location.href = `${host}`
 }
     </script>
 

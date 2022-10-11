@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>TODO</title>
     <body>
       
@@ -18,14 +18,11 @@
       height: 31vh;
       border: 1px solid;
       border-radius: 37px;
-      width: 24%;
-      padding-right: 6%;
-      padding-left: -9%;
-      padding: 3%;
+      width: 132%;
+      padding: 10%;
       font-family: 'Montserrat', sans-serif;
-      background-color:  cadetblue;
-      margin-left: 8%;
-     
+      background-color: cadetblue;
+      margin-left: -172%;
     }
     .login li{
       padding-left: 41%;
@@ -44,18 +41,75 @@
         padding-left: 33%;
     }
     #define{
-        width: 38%;
-        margin-left: 49%;
-        margin-top: 3%;
-        color: blue;
+      width: 32%;
+      margin-left: 20%;
+      margin-top: 8%;
+      color: blue;
+    }
+    .grid{
+      display: grid;
+    grid-template-columns: auto auto;
+    }
+    .page1 h1 {
+      padding-left: 43%;
+      margin-top: 22%;
+      font-family: "Montserrat", sans-serif;
+    }
+    .page1 li {
+      padding-left: 43%;
+    }
+    .bottom a {
+      position: fixed;
+      bottom: 0;
+      color: blue;
+    }
+    .footer {
+      background-color: wheat;
+      padding: 1%;
+      bottom: 0;
+      margin-top: 21%;
+      width: 100%;
+      margin-left: -1%;
+      font-family: "Montserrat", sans-serif;
+    }
+    .footer li {
+      padding-left: 14%;
+      display: block;
+      margin-top: -1%;
+      color: black;
+    }
+    .footer i {
+      padding-left: 1%;
+    }
+    .header {
+      padding: 60px;
+      text-align: center;
+      background: #1abc9c;
+      color: white;
+      font-size: 30px;
+    }
+    h1 {
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+    }
+    .icons {
+      margin-left: 22%;
+      margin-top: -2%;
+    }
+    .footer a {
+      color: black;
     }
     </style>
+
        <h1>TODO</h1>
+       <div class='grid'>
+        <div>
        <p id = "define"> ToDo List App is a kind of app that generally used to maintain our day-to-day 
         tasks or list everything that we have to do, with the most important tasks 
         at the top of the list, and the least important tasks at the bottom.
          It is helpful in planning our daily schedules. We can
          add more tasks at any time and delete a task that is completed. </p>
+       </div>
       <div class ='login'>
          <a>welcome</a>
          {% csrf_token %}
@@ -63,6 +117,7 @@
          <button onclick=get()>submit</button>
      <a id='signup' href = 'http://127.0.0.1:9000/signup'>signup</a>
       </div>
+    </div>
       <div class="footer">
         <a href="">Terms and conditions</a>
         <li>@2022</li>

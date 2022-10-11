@@ -32,7 +32,7 @@
         {%csrf_token%}
         {{form.as_p}}
         <button onclick=get()>submit</button>
-        <button><a href ='http://127.0.0.1:9000/login'>login</a></button>
+        <button><a id='login' href ='http://127.0.0.1:9000/login'>login</a></button>
         
     </div>
     <div class = "error"></div>
@@ -71,6 +71,7 @@ fetch('https://apiven.herokuapp.com/api/signup', {
   })
   window.location.href = `${host}/login`
 }
+document.getElementById('login').href=`${host}`
 </script>
    
 {%endblock%}

@@ -49,6 +49,7 @@ button{
 </style>
 {% extends 'base.html'%}
 {%block content%}
+<button onclick=logout()><i class="fa fa-sign-out" aria-hidden="true"></i></button>
 <div  class = 'signup'>
      <a>CREATETODO</a>
     {%csrf_token%}
@@ -162,18 +163,5 @@ button{
     })    
   }
  })
- function deletetodo(id){
- var url = 'http://127.0.0.1:9000/api/updatetodo/';
-   fetch(`${url}${id}`,{
-    method:'DELETE',
-    headers:{
-        'X-CSRFToken':csrf_token,
-        'Content-Type':'application/json',
-        'Authorization':'token' + ' '+token,
-}
- }).then(res => {console.log(res.json())})
- location.reload()
- console.log(id)
- }   
 </script>
 {%endblock%}
