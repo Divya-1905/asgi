@@ -4,11 +4,36 @@
     margin-left: 13%;
     padding-left: 1%;
     border-radius: 11%;
+    outline: none;
+    padding: 1%;
+    border: none;
+  }
+  #id_email{
+    outline: none;
+    padding: 1%;
+    border: none;
+  
+  }
+  #id_password{
+    outline: none;
+    padding: 1%;
+    border: none;
+  }
+  #id_confrim_password{
+    outline: none;
+    padding: 1%;
+    border: none;
+  }
+  #id_phone{
+    outline: none;
+    padding: 1%;
+    border: none;
   }
   .box li{
     padding-left: 41%;
     margin-top: -2%;
     margin-bottom: 4%;
+    color: white;
   }
 
   .box{
@@ -23,6 +48,9 @@
     background-color: #f7f7f9;
     margin-left: 8%;
     margin-top: 8%;
+    outline: none;
+    padding: 2%;
+    border: none;
   }
 </style>
 {% extends "base.html" %}
@@ -32,7 +60,7 @@
         {%csrf_token%}
         {{form.as_p}}
         <button onclick=get()>submit</button>
-        <button><a href ='http://127.0.0.1:9000/login'>login</a></button>
+        <button><a id ='login'>login</a></button>
         
     </div>
     <div class = "error"></div>
@@ -40,6 +68,7 @@
 <script>
 var email,phone,password,confirm_password;
 var host = window.location.protocol + "//" + window.location.host;
+document.getElementById("login").href = `${host}/`;
 let csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value
 function get(){
 email=document.getElementById("id_email").value

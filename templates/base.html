@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Document</title>
 <style>
     .box{
@@ -36,22 +36,11 @@
         list-style-type:none;
         margin-top: 1%;
       }
-      ul{
-        height: 7%;
-        display: flex;
-        justify-content: space-around;
-        background-color: seagreen;
-      }
+     
 </style>
 </head>
 
 <body>
-  <ul>
-    <li><a href ='http://127.0.0.1:9000/login'>login</a></li>
-    <li><a href="#" onclick= logout()>logout</a></li>
-    
-   
-  </ul>
      {% block content  %}
 
 
@@ -59,8 +48,9 @@
 {% endblock   %}
     <script>
       function logout(){
+        var host = window.location.protocol + "//" + window.location.host;
 let token = localStorage.getItem('token')
-fetch('http://127.0.0.1:9000/api/logout',{
+fetch('https://apiven.herokuapp.com/api/logout',{
   method:'GET',
   
   headers:new Headers({
@@ -75,7 +65,7 @@ fetch('http://127.0.0.1:9000/api/logout',{
 }).then(data => {
   localStorage.clear()
 })
-window.location.href = `${host}/logout`
+window.location.href = `${host}`
 }
     </script>
 

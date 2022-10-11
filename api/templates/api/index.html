@@ -1,104 +1,195 @@
 <!DOCTYPE html>
 
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <meta charset="UTF-8">
-
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>TODO</title>
     <body>
-      
-<style>
-    .login{
-      height: 31vh;
-      border: 1px solid;
-      border-radius: 37px;
-      width: 24%;
-      padding-right: 6%;
-      padding-left: -9%;
-      padding: 3%;
-      font-family: 'Montserrat', sans-serif;
-      background-color:  cadetblue;
-      margin-left: 8%;
-     
-    }
-    .login li{
-      padding-left: 41%;
-        margin-top: -2%;
-        margin-bottom: 4%;
-    }
-    .login button{
-       margin-top: 11%;
-        margin-left: 4%;
-    }
-    a {
-        text-decoration: none;
-        color: white;
-    }
-    h1{
-        padding-left: 33%;
-    }
-    #define{
-        width: 38%;
-        margin-left: 49%;
-        margin-top: 3%;
-        color: blue;
-    }
-    </style>
-       <h1>TODO</h1>
-       <p id = "define"> ToDo List App is a kind of app that generally used to maintain our day-to-day 
-        tasks or list everything that we have to do, with the most important tasks 
-        at the top of the list, and the least important tasks at the bottom.
-         It is helpful in planning our daily schedules. We can
-         add more tasks at any time and delete a task that is completed. </p>
-      <div class ='login'>
-         <a>welcome</a>
-         {% csrf_token %}
-         {{form.as_p}}
-         <button onclick=get()>submit</button>
-     <a id='signup' href = 'http://127.0.0.1:9000/signup'>signup</a>
+      <style>
+        .login {
+          height: 29vh;
+          border: 1px solid;
+          border-radius: 37px;
+          width: 117%;
+          margin-top: 52%;
+          padding-right: 6%;
+          padding-left: -9%;
+          padding: 17%;
+          font-family: "Montserrat", sans-serif;
+          background-color: #ffc4c4;
+          margin-left: 5%;
+        }
+        .login li {
+          padding-left: 41%;
+          margin-top: -2%;
+          margin-bottom: 4%;
+        }
+        .login button {
+          margin-top: 11%;
+          margin-left: 4%;
+          outline: none;
+          padding: 2%;
+          border: none;
+        }
+        .login a {
+          text-decoration: none;
+          color: black;
+          padding-left: 30%;
+        }
+        #id_email {
+          outline: none;
+          padding: 2%;
+          border: none;
+        }
+        #id_phone {
+          outline: none;
+          padding: 2%;
+          border: none;
+        }
+
+        #define {
+          width: 47%;
+          margin-left: 49%;
+          margin-top: 3%;
+          color: blue;
+          margin-left: 31%;
+          margin-top: 25%;
+          font-family: "Montserrat", sans-serif;
+        }
+        .first {
+          display: grid;
+          grid-template-columns: auto auto;
+          width: 74%;
+        }
+        .page1 h1 {
+          padding-left: 43%;
+          margin-top: 22%;
+          font-family: "Montserrat", sans-serif;
+        }
+        .page1 li {
+          padding-left: 43%;
+        }
+        .bottom a {
+          position: fixed;
+          bottom: 0;
+          color: blue;
+        }
+        .footer {
+          background-color: wheat;
+          padding: 1%;
+          bottom: 0;
+          margin-top: 9%;
+          width: 98%;
+          margin-left: -1%;
+          font-family: "Montserrat", sans-serif;
+        }
+        .footer li {
+          padding-left: 14%;
+          display: block;
+          margin-top: -1%;
+          color: black;
+        }
+        .footer i {
+          padding-left: 1%;
+        }
+        .header {
+          padding: 60px;
+          text-align: center;
+          background: #1abc9c;
+          color: white;
+          font-size: 30px;
+        }
+        h1 {
+          text-align: center;
+          font-family: "Montserrat", sans-serif;
+        }
+        .icons {
+          margin-left: 22%;
+          margin-top: -2%;
+        }
+        .footer a {
+          color: black;
+        }
+      </style>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      />
+      <h1>TODO</h1>
+      <div class="first">
+        <div class="page1">
+          <p id="define">
+            ToDo List App is a kind of app that generally used to maintain our
+            day-to-day tasks or list everything that we have to do, with the
+            most important tasks at the top of the list, and the least important
+            tasks at the bottom. It is helpful in planning our daily schedules.
+            We can add more tasks at any time and delete a task that is
+            completed.
+          </p>
+        </div>
+        <div class="login">
+          <a>welcome</a>
+          {% csrf_token %} {{form.as_p}}
+          <button onclick="get()">submit</button>
+          <a id="signup" href="ghjfhfkhfhgfkhfff"
+            >signup</a
+          >
+        </div>
+      </div>
+      <div class="footer">
+        <a href="">Terms and conditions</a>
+        <li>@2022</li>
+        <div class="icons">
+          <i
+            id="youtube"
+            class="fa fa-youtube-play"
+            style="font-size: 24px"
+          ></i>
+          <i id="twitter" class="fa fa-twitter" style="font-size: 24px"></i>
+          <i id="facebook" class="fa fa-facebook-f" style="font-size: 24px"></i>
+          <i id="instagram" class="fa fa-instagram" style="font-size: 24px"></i>
+        </div>
       </div>
       <script>
         var host = window.location.protocol + "//" + window.location.host;
-        document.getElementById('signup').href = `${host}/signup`
-        var email,password
-      
+        document.getElementById("signup").href = `${host}/signup`;
+        var email, password;
 
-        let csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value
-        function get(){
-            email=document.getElementById("id_email").value
-            phone=document.getElementById("id_phone").value
-        console.log(email)
-        console.log(phone)
-        console.log(csrf_token)
-        fetch('https://apiven.herokuapp.com/api/Login',{
-          method:'POST',
-          body:JSON.stringify({'email':email,'phone':phone}),
-          headers:new Headers({
-            'X-CSRFToken':csrf_token,
-            'Content-Type':'application/json'
-          }),
-        }).then(res => {
-          return res.json()
-      
-        }).then(data => {
-          console.log(data)
-          if(data.data.token){
-    
-          localStorage.setItem("token",data.data.token);
-          localStorage.setItem('id',data.data.id);
-          window.location.href = `${host}/todocreate`
-         
-          
-          }
-        })
-      }
-
-      
+        let csrf_token = document.querySelector(
+          "[name=csrfmiddlewaretoken]"
+        ).value;
+        function get() {
+          email = document.getElementById("id_email").value;
+          phone = document.getElementById("id_phone").value;
+          console.log(email);
+          console.log(phone);
+          console.log(csrf_token);
+          fetch("https://apiven.herokuapp.com/api/Login", {
+            method: "POST",
+            body: JSON.stringify({ email: email, phone: phone }),
+            headers: new Headers({
+              "X-CSRFToken": csrf_token,
+              "Content-Type": "application/json",
+            }),
+          })
+            .then((res) => {
+              return res.json();
+            })
+            .then((data) => {
+              console.log(data);
+              if (data.data.token) {
+                localStorage.setItem("token", data.data.token);
+                localStorage.setItem("id", data.data.id);
+                window.location.href = `${host}/todocreate`;
+              }
+            });
+        }
       </script>
-    
+    </body>
+  </head>
+</html>
