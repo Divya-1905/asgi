@@ -21,3 +21,6 @@ def createtodo(request):
 def updatetodo(request):
     form = todoupdateform()
     return render(request,'api/updatetodo.html',{'form':form})
+def index(request):
+    form = loginform()
+    return render(request,'api/index.html',{'form':form})
