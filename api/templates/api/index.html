@@ -14,112 +14,41 @@
     <body>
       
 <style>
-    <style>
-<style>	        .login {
-    .login{	          height: 29vh;
-      height: 31vh;	          border: 1px solid;
-      border: 1px solid;	          border-radius: 37px;
-      border-radius: 37px;	          width: 117%;
-      width: 24%;	          margin-top: 52%;
-      padding-right: 6%;	          padding-right: 6%;
-      padding-left: -9%;	          padding-left: -9%;
-      padding: 3%;	          padding: 17%;
-      font-family: 'Montserrat', sans-serif;	          font-family: "Montserrat", sans-serif;
-      background-color:  cadetblue;	          background-color: #ffc4c4;
-      margin-left: 8%;	          margin-left: 5%;
-
-        }
-    }	        .login li {
-    .login li{	          padding-left: 41%;
-      padding-left: 41%;	          margin-top: -2%;
-        margin-top: -2%;	          margin-bottom: 4%;
-        margin-bottom: 4%;	        }
-    }	        .login button {
-    .login button{	          margin-top: 11%;
-       margin-top: 11%;	          margin-left: 4%;
-        margin-left: 4%;	          outline: none;
-    }	          padding: 2%;
-    a {	          border: none;
-        text-decoration: none;	        }
-        color: white;	        .login a {
-    }	          text-decoration: none;
-    h1{	          color: black;
-        padding-left: 33%;	          padding-left: 30%;
-    }	        }
-    #define{	        #id_email {
-        width: 38%;	          outline: none;
-        margin-left: 49%;	          padding: 2%;
-        margin-top: 3%;	          border: none;
-        color: blue;	        }
-    }	        #id_phone {
-    </style>	          outline: none;
-       <h1>TODO</h1>	          padding: 2%;
-       <p id = "define"> ToDo List App is a kind of app that generally used to maintain our day-to-day 	          border: none;
-        tasks or list everything that we have to do, with the most important tasks 	        }
-        at the top of the list, and the least important tasks at the bottom.	
-         It is helpful in planning our daily schedules. We can	        #define {
-         add more tasks at any time and delete a task that is completed. </p>	          width: 47%;
-      <div class ='login'>	          margin-left: 49%;
-         <a>welcome</a>	          margin-top: 3%;
-         {% csrf_token %}	          color: blue;
-         {{form.as_p}}	          margin-left: 31%;
-         <button onclick=get()>submit</button>	          margin-top: 25%;
-     <a id='signup' href = 'http://127.0.0.1:9000/signup'>signup</a>	          font-family: "Montserrat", sans-serif;
-        }
-        .first {
-          display: grid;
-          grid-template-columns: auto auto;
-          width: 74%;
-        }
-        .page1 h1 {
-          padding-left: 43%;
-          margin-top: 22%;
-          font-family: "Montserrat", sans-serif;
-        }
-        .page1 li {
-          padding-left: 43%;
-        }
-        .bottom a {
-          position: fixed;
-          bottom: 0;
-          color: blue;
-        }
-        .footer {
-          background-color: wheat;
-          padding: 1%;
-          bottom: 0;
-          margin-top: 9%;
-          width: 98%;
-          margin-left: -1%;
-          font-family: "Montserrat", sans-serif;
-        }
-        .footer li {
-          padding-left: 14%;
-          display: block;
-          margin-top: -1%;
-          color: black;
-        }
-        .footer i {
-          padding-left: 1%;
-        }
-        .header {
-          padding: 60px;
-          text-align: center;
-          background: #1abc9c;
-          color: white;
-          font-size: 30px;
-        }
-        h1 {
-          text-align: center;
-          font-family: "Montserrat", sans-serif;
-        }
-        .icons {
-          margin-left: 22%;
-          margin-top: -2%;
-        }
-        .footer a {
-          color: black;
-        }
+    .login{
+      height: 31vh;
+      border: 1px solid;
+      border-radius: 37px;
+      width: 24%;
+      padding-right: 6%;
+      padding-left: -9%;
+      padding: 3%;
+      font-family: 'Montserrat', sans-serif;
+      background-color:  cadetblue;
+      margin-left: 8%;
+     
+    }
+    .login li{
+      padding-left: 41%;
+        margin-top: -2%;
+        margin-bottom: 4%;
+    }
+    .login button{
+       margin-top: 11%;
+        margin-left: 4%;
+    }
+    a {
+        text-decoration: none;
+        color: white;
+    }
+    h1{
+        padding-left: 33%;
+    }
+    #define{
+        width: 38%;
+        margin-left: 49%;
+        margin-top: 3%;
+        color: blue;
+    }
     </style>
        <h1>TODO</h1>
        <p id = "define"> ToDo List App is a kind of app that generally used to maintain our day-to-day 
