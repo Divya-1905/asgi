@@ -64,6 +64,7 @@ button{
  let container = document.querySelector('.todolist-div')
  let csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value
  let editbutton=false;
+ var host = window.location.protocol + "//" + window.location.host;
 
  var token = localStorage.getItem('token')
  fetch('https://apiven.herokuapp.com/api/createtodo/',{
@@ -159,6 +160,7 @@ button{
          'plannedhours' :plannedhours,'notification' :notification,'complete' :complete}),
       }).then(res => {
       console.log(res)
+      window.location.href=`${host}/todocreate`
     })    
   }
  })
