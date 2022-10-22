@@ -66,7 +66,7 @@ button{
  let editbutton=false;
 
  var token = localStorage.getItem('token')
- fetch('https://apiven.herokuapp.com/api/createtodo/',{
+ fetch(' http://127.0.0.1:9000/api/createtodo/',{
     method:'GET',
     headers:new Headers({
       'Content-Type':'application/json',
@@ -163,5 +163,18 @@ button{
     })    
   }
  })
+ function deletetodo(id){
+ var url = 'http://127.0.0.1:9000/api/updatetodo/';
+   fetch(`${url}${id}`,{
+    method:'DELETE',
+    headers:{
+        'X-CSRFToken':csrf_token,
+        'Content-Type':'application/json',
+        'Authorization':'token' + ' '+token,
+}
+ }).then(res => {console.log(res.json())})
+ location.reload()
+ console.log(id)
+ }   
 </script>
 {%endblock%}

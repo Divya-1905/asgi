@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<<<<<<< HEAD
+=======
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+>>>>>>> 51283c5b7ed7bb8cfcf1b0ccfb18f3e4bb7e52ad
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Document</title>
+    <title>Todo</title>
 <style>
     .box{
         height: 38vh;
@@ -40,13 +38,38 @@
         height: 7%;
         display: flex;
         justify-content: space-around;
-        background-color: seagreen;
+        background-color: #3333ff ;
+      }
+      .login{
+        height: 31vh;
+        border: 1px solid;
+        border-radius: 37px;
+        width: 24%;
+        padding-right: 6%;
+        padding-left: -9%;
+        padding: 3%;
+        font-family: 'Montserrat', sans-serif;
+        background-color:  cadetblue;
+        margin-left: 8%;
+        margin-top: 8%;
+      }
+      .login li{
+        padding-left: 41%;
+          margin-top: -2%;
+          margin-bottom: 4%;
+      }
+      .login button{
+         margin-top: 11%;
+          margin-left: 4%;
+      }
+      ul li a{
+        color:white;
+        text-decoration:none;
       }
 </style>
 </head>
 
 <body>
-
      {% block content  %}
 {% endblock   %}
     <script>
@@ -54,24 +77,23 @@
       function logout(){
 let token = localStorage.getItem('token')
 fetch('http://127.0.0.1:9000/api/logout',{
-  method:'GET',
+method:'GET',
+
+headers:new Headers({
   
-  headers:new Headers({
-    
-    'Content-Type':'application/json',
-    'Authorization':'token' + ' '+token,
-  }),
+  'Content-Type':'application/json',
+  'Authorization':'token' + ' '+token,
+}),
 }).then(res => {
 
-  return res.json()
+return res.json()
 
 }).then(data => {
-  localStorage.clear()
+localStorage.clear()
 })
 window.location.href = `${host}`
 }
-    </script>
-
-</body>
-
+  </script>
+</body>  
 </html>
+
